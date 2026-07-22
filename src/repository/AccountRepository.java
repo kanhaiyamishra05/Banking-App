@@ -1,9 +1,11 @@
 package repository;
 
 import domain.Account;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class AccountRepository
 {
     private final Map<String, Account> accountsByNumber = new HashMap<>();

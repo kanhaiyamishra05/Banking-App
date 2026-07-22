@@ -8,6 +8,8 @@ import repository.AccountRepository;
 import repository.CustomerRepository;
 import repository.TransactionRepository;
 import service.BankService;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -16,11 +18,21 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.Set;
 
+@Service
 public class bankServiceimpl implements BankService {
 
-    private final AccountRepository accountRepository = new AccountRepository();
-    private final CustomerRepository customerRepository = new CustomerRepository();
-    private final TransactionRepository transactionRepository = new TransactionRepository();
+    private final AccountRepository accountRepository;
+    private final CustomerRepository customerRepository;
+    private final TransactionRepository transactionRepository;
+
+    @Autowired
+    public bankServiceimpl(AccountRepository accountRepository,
+                           CustomerRepository customerRepository,
+                           TransactionRepository transactionRepository) {
+        this.accountRepository = accountRepository;
+        this.customerRepository = customerRepository;
+        this.transactionRepository = transactionRepository;
+    }
 
     @Override
     public String openAccount(String name, String email, String accountType) {

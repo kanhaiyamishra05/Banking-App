@@ -1,9 +1,11 @@
 package repository;
 
 import domain.Transaction;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class TransactionRepository {
     private final Map<String, List<Transaction>> transactionsByAccount = new HashMap<>();
 

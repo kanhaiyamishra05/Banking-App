@@ -1,9 +1,11 @@
 package repository;
 
 import domain.Customer;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class CustomerRepository {
     private final Map<String, Customer> customersById = new HashMap<>();
 

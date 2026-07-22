@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simple, secure, and clean online banking platform to manage accounts, make deposits, withdrawals, and instant fund transfers.">
+    <title>Apex Trust - Online Banking Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header/Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-icon">🏦</span>
+                <h1 id="app-title">Apex Trust</h1>
+                <span class="logo-sub">Online Banking</span>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search by customer name...">
+                    <button id="search-btn">Search</button>
+                    <button id="clear-search-btn" class="btn-secondary" style="display: none;">Clear</button>
+                </div>
+                <div class="status-indicator">
+                    <span class="dot green"></span>
+                    <span>Secure Session</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container main-content">
+        <!-- Sidebar - Accounts List -->
+        <section class="sidebar-section">
+            <div class="section-header">
+                <h2>Customer Accounts</h2>
+                <button id="btn-show-open-form" class="btn-primary-sm">+ Open Account</button>
+            </div>
+            <div id="accounts-list" class="accounts-grid">
+                <!-- Dynamic Accounts will be injected here -->
+                <div class="loading-state">Loading accounts...</div>
+            </div>
+        </section>
+
+        <!-- Main Panel - Forms and Details -->
+        <section class="details-section" id="details-panel">
+            <!-- Default panel when no account is selected -->
+            <div id="default-panel-view" class="card info-card">
+                <div class="info-icon">🏦</div>
+                <h3>Welcome to Apex Trust Online Banking</h3>
+                <p>Select a customer account from the sidebar list to view statements, make deposits, withdrawals, or transfer funds. Or click the button below to register a new customer account.</p>
+                <button id="btn-welcome-open-account" class="btn-primary">Open a New Account</button>
+            </div>
+
+            <!-- Open Account Form Panel -->
+            <div id="open-account-panel" class="card form-card" style="display: none;">
+                <div class="card-header">
+                    <h3>Open New Customer Account</h3>
+                    <button class="btn-close" id="btn-close-open-form">✕</button>
+                </div>
+                <form id="open-account-form">
+                    <div class="form-group">
+                        <label for="new-cust-name">Customer Name</label>
+                        <input type="text" id="new-cust-name" required placeholder="e.g., Alice Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-cust-email">Customer Email</label>
+                        <input type="email" id="new-cust-email" required placeholder="e.g., alice@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-acc-type">Account Type</label>
+                        <select id="new-acc-type" required>
+                            <option value="SAVINGS">Savings Account</option>
+                            <option value="CURRENT">Current Account</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-initial-deposit">Initial Deposit Amount ($)</label>
+                        <input type="number" id="new-initial-deposit" min="0" step="0.01" placeholder="Optional (e.g. 500)">
+                    </div>
+                    <button type="submit" class="btn-primary w-100">Submit Application</button>
+                </form>
+            </div>
+
+            <!-- Selected Account Dashboard -->
+            <div id="active-account-dashboard" style="display: none;">
+                <!-- Account Summary Header -->
+                <div class="card account-summary-card">
+                    <div class="account-badge" id="active-acc-badge">SAVINGS</div>
+                    <div class="summary-details">
+                        <div class="cust-details">
+                            <span class="label">ACCOUNT HOLDER</span>
+                            <h2 id="active-cust-name">Alice Smith</h2>
+                            <span id="active-cust-email" class="subtext">alice@example.com</span>
+                        </div>
+                        <div class="acc-numbers">
+                            <span class="label">ACCOUNT NUMBER</span>
+                            <div class="value-highlight" id="active-acc-number">AC000001</div>
+                        </div>
+                        <div class="balance-display">
+                            <span class="label">AVAILABLE BALANCE</span>
+                            <div class="balance-amount" id="active-balance">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transaction Tabs & Forms -->
+                <div class="actions-grid">
+                    <!-- Deposit Form -->
+                    <div class="card action-card">
+                        <h4>Deposit Cash</h4>
+                        <form id="deposit-form">
+                            <div class="form-group-sm">
+                                <label for="deposit-amount">Amount ($)</label>
+                                <input type="number" id="deposit-amount" min="0.01" step="0.01" required placeholder="0.00">
+                            </div>
+                            <div class="form-group-sm">
+                                <label for="deposit-note">Description</label>
+                                <input type="text" id="deposit-note" placeholder="Cash Deposit">
+                            </div>
+                            <button type="submit" class="btn-primary-sm btn-green w-100">Deposit</button>
+                        </form>
+                    </div>
+
+                    <!-- Withdraw Form -->
+                    <div class="card action-card">
+                        <h4>Withdraw Cash</h4>
+                        <form id="withdraw-form">
+                            <div class="form-group-sm">
+                                <label for="withdraw-amount">Amount ($)</label>
+                                <input type="number" id="withdraw-amount" min="0.01" step="0.01" required placeholder="0.00">
+                            </div>
+                            <div class="form-group-sm">
+                                <label for="withdraw-note">Description</label>
+                                <input type="text" id="withdraw-note" placeholder="Cash Withdrawal">
+                            </div>
+                            <button type="submit" class="btn-primary-sm btn-red w-100">Withdraw</button>
+                        </form>
+                    </div>
+
+                    <!-- Transfer Form -->
+                    <div class="card action-card">
+                        <h4>Internal Fund Transfer</h4>
+                        <form id="transfer-form">
+                            <div class="form-group-sm">
+                                <label for="transfer-dest">Recipient Account</label>
+                                <input type="text" id="transfer-dest" required placeholder="e.g. AC000002">
+                            </div>
+                            <div class="form-group-sm">
+                                <label for="transfer-amount">Amount ($)</label>
+                                <input type="number" id="transfer-amount" min="0.01" step="0.01" required placeholder="0.00">
+                            </div>
+                            <div class="form-group-sm">
+                                <label for="transfer-note">Description</label>
+                                <input type="text" id="transfer-note" placeholder="Fund Transfer">
+                            </div>
+                            <button type="submit" class="btn-primary-sm btn-blue w-100">Transfer</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Transaction Statement -->
+                <div class="card statement-card">
+                    <div class="statement-header">
+                        <h4>Account Statement</h4>
+                        <span class="refresh-indicator" id="statement-refresh-btn" title="Refresh Statement">🔄 Refresh</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="statement-table">
+                            <thead>
+                                <tr>
+                                    <th>Date/Time</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="statement-rows">
+                                <!-- Dynamic rows go here -->
+                                <tr>
+                                    <td colspan="4" class="empty-table">No transactions recorded.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Apex Trust Banking Corporation. All rights reserved.</p>
+            <p class="security-note">🔒 SSL Encrypted | Authorized Institution</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
