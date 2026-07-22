@@ -11,4 +11,16 @@ public class Customer
         this.id = id;
         this.email = email;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

@@ -19,4 +19,28 @@ public class Transaction
         this.timeStamp = timeStamp;
         this.note = note;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public LocalDateTime getTimeStamp() {
+        return timeStamp;
+    }
+
+    public String getNote() {
+        return note;
+    }
 }
