@@ -27,12 +27,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>3.3.1</version>
         </dependency>
 
         <!-- Spring Boot DevTools for hot swapping (optional but helpful) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-devtools</artifactId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>3.3.1</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
