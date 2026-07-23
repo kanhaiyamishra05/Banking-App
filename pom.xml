@@ -30,6 +30,27 @@
             <version>3.3.1</version>
         </dependency>
 
+        <!-- Spring Boot JPA Starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+
+        <!-- H2 Database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+        </dependency>
+
+        <!-- Spring Boot Security Starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+
         <!-- Spring Boot DevTools for hot swapping (optional but helpful) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

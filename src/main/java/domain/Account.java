@@ -1,11 +1,19 @@
 package domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Account
 {
+    @Id
     private String accountNumber;
     private String customerId;
     private Double balance;
     private String accountType;
+
+    public Account() {
+    }
 
     public Account(String accountNumber, String accountType, Double balance, String customerId) {
         this.accountNumber = accountNumber;

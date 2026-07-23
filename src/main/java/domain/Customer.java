@@ -1,10 +1,18 @@
 package domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Customer
 {
     private String name;
+    @Id
     private String id;
     private String email;
+
+    public Customer() {
+    }
 
     public Customer(String name, String id, String email) {
         this.name = name;

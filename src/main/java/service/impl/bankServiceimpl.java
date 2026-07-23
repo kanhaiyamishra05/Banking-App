@@ -10,6 +10,7 @@ import repository.TransactionRepository;
 import service.BankService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 import java.util.Set;
 
 @Service
+@Transactional
 public class bankServiceimpl implements BankService {
 
     private final AccountRepository accountRepository;
